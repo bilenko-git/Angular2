@@ -7,15 +7,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var todo_1 = require("./shared/todo");
+var data_1 = require("./shared/data");
 var AppComponent = (function () {
     function AppComponent() {
+        this.todos = data_1.todos;
+        this.title = 'Angular 2Do';
     }
+    AppComponent.prototype.create = function (title) {
+        var todo = new todo_1.Todo(title);
+        //this.todos.push(todo);
+        console.log(todo);
+    };
     return AppComponent;
 }());
 AppComponent = __decorate([
     core_1.Component({
+        moduleId: module.id,
         selector: 'app',
-        template: '<h1>Angular 2Do</h1>'
+        templateUrl: 'app.component.html',
+        styleUrls: ['app.component.css']
     })
 ], AppComponent);
 exports.AppComponent = AppComponent;

@@ -8,7 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
+var forms_1 = require("@angular/forms");
 var app_component_1 = require("./app.component");
+var todo_form_component_1 = require("./todo-form/todo-form.component");
+var todo_list_component_1 = require("./todo-list/todo-list.component");
+var todo_item_component_1 = require("./todo-item/todo-item.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -16,9 +20,19 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule],
-        declarations: [app_component_1.AppComponent],
-        bootstrap: [app_component_1.AppComponent]
+        imports: [
+            platform_browser_1.BrowserModule,
+            forms_1.FormsModule
+        ],
+        declarations: [
+            app_component_1.AppComponent,
+            todo_form_component_1.TodoFormComponent,
+            todo_list_component_1.TodoListComponent,
+            todo_item_component_1.TodoItemComponent
+        ],
+        bootstrap: [
+            app_component_1.AppComponent
+        ]
     })
 ], AppModule);
 exports.AppModule = AppModule;
