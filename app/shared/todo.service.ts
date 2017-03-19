@@ -37,7 +37,7 @@ export class TodoService {
 		let options = new RequestOptions({ headers });
 		let url = `${this.apiUrl}/${todo.id}`;
 		
-		this.http.delete(this.apiUrl, options)
+		this.http.delete(url, options)
 				 .toPromise()
 				 .then(res => {
 		 			let index = this.todos.indexOf( todo );

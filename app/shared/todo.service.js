@@ -43,7 +43,7 @@ var TodoService = (function () {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
         var url = this.apiUrl + "/" + todo.id;
-        this.http.delete(this.apiUrl, options)
+        this.http.delete(url, options)
             .toPromise()
             .then(function (res) {
             var index = _this.todos.indexOf(todo);
