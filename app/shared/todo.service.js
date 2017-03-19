@@ -11,62 +11,46 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
-require("rxjs/add/operator/toPromise");
+var Observable_1 = require("rxjs/Observable");
+require("rxjs/add/operator/map");
+require("rxjs/add/operator/catch");
+require("rxjs/add/observable/throw");
 var todo_1 = require("./todo");
 var TodoService = (function () {
     function TodoService(http) {
         this.http = http;
         this.apiUrl = 'api/todos';
-        this.todos = [];
     }
     TodoService.prototype.getTodos = function () {
-        var _this = this;
         return this.http.get(this.apiUrl)
-            .toPromise()
-            .then(function (res) { return res.json().data; })
-            .then(function (todos) { return _this.todos = todos; })
+            .map(function (res) { return res.json().data; })
             .catch(this.handleError);
     };
     TodoService.prototype.createTodo = function (title) {
-        var _this = this;
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
         var todo = new todo_1.Todo(title);
-        this.http.post(this.apiUrl, todo, options)
-            .toPromise()
-            .then(function (res) { return res.json().data; })
-            .then(function (todo) { return _this.todos.push(todo); })
+        return this.http.post(this.apiUrl, todo, options)
+            .map(function (res) { return res.json().data; })
             .catch(this.handleError);
     };
     TodoService.prototype.deleteTodo = function (todo) {
-        var _this = this;
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
         var url = this.apiUrl + "/" + todo.id;
-        this.http.delete(url, options)
-            .toPromise()
-            .then(function (res) {
-            var index = _this.todos.indexOf(todo);
-            if (index > -1) {
-                _this.todos.splice(index, 1);
-            }
-        })
+        return this.http.delete(url, options)
             .catch(this.handleError);
     };
     TodoService.prototype.toggleTodo = function (todo) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
         var url = this.apiUrl + "/" + todo.id;
-        this.http.put(this.apiUrl, todo, options)
-            .toPromise()
-            .then(function (res) {
-            todo.completed = !todo.completed;
-        })
+        return this.http.put(url, todo, options)
             .catch(this.handleError);
     };
     TodoService.prototype.handleError = function (error) {
         console.error('Произошал ошибка', error);
-        return Promise.reject(error.message || error);
+        return Observable_1.Observable.throw(error.message || error);
     };
     return TodoService;
 }());

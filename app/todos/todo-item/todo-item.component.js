@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var todo_1 = require("../shared/todo");
+var todo_1 = require("../../shared/todo");
 var TodoItemComponent = (function () {
     function TodoItemComponent() {
         this.delete = new core_1.EventEmitter();
