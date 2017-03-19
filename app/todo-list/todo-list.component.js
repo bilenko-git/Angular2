@@ -10,33 +10,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var todo_service_1 = require("../shared/todo.service");
 var TodoListComponent = (function () {
-    function TodoListComponent() {
+    function TodoListComponent(todoService) {
+        this.todoService = todoService;
+        this.todos = [];
     }
+    TodoListComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.todoService.getTodos().then(function (todos) { return _this.todos = todos; });
+    };
     TodoListComponent.prototype.toggle = function (todo) {
-        todo.completed = !todo.completed;
-        console.log('toggle', todo);
+        this.todoService.toggleTodo(todo);
     };
     TodoListComponent.prototype.delete = function (todo) {
         console.log(todo);
-        var index = this.todos.indexOf(todo);
-        if (index > -1) {
-            this.todos.splice(index, 1);
-        }
+        this.todoService.deleteTodo(todo);
     };
     return TodoListComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Array)
-], TodoListComponent.prototype, "todos", void 0);
 TodoListComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
         selector: 'todo-list',
         templateUrl: 'todo-list.component.html',
         styleUrls: ['todo-list.component.css']
-    })
+    }),
+    __metadata("design:paramtypes", [todo_service_1.TodoService])
 ], TodoListComponent);
 exports.TodoListComponent = TodoListComponent;
 //# sourceMappingURL=todo-list.component.js.map
