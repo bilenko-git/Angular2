@@ -7,6 +7,7 @@ import { InMemoryDataService } from './shared/data.service';
 
 import { AppComponent } from './app.component';
 import { TodosComponent } from './todos/todos.component';
+import { AuthenticationAppComponent } from './authentication/authentication.component'
 import { TodoFormComponent } from './todos/todo-form/todo-form.component';
 import { TodoListComponent } from './todos/todo-list/todo-list.component';
 import { TodoItemComponent } from './todos/todo-item/todo-item.component';
@@ -23,6 +24,7 @@ import { TodoService } from './shared/todo.service';
 	declarations: [
 		AppComponent,
 		TodosComponent,
+		AuthenticationAppComponent,
 		TodoFormComponent, 
 		TodoListComponent,
 		TodoItemComponent

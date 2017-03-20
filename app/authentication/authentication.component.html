@@ -1,0 +1,15 @@
+<form class="ui large form segment" (ngSubmit)="authSubmit()" #authForm="ngForm">
+	<h3 class="ui header">Authentication</h3>
+
+	<div class="field">
+		<label for="title">Name</label>
+		<input type="text" name="s_user_name" [(ngModel)]="user_name" required>
+	</div>
+
+	<div class="field">
+		<label for="title">Password</label>
+		<input type="password" name="s_password" [(ngModel)]="password" required>
+	</div>
+
+	<button type="submit" class="ui positive right floated button" [disabled]="authForm.form.invalid">Send</button>
+</form>
